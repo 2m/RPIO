@@ -89,7 +89,7 @@ setup(void)
     else
         peri_base = BCM2709_PERI_BASE;
 
-    gpio_map = (uint32_t *)mmap( (caddr_t)gpio_mem, BLOCK_SIZE, PROT_READ|PROT_WRITE, MAP_SHARED|MAP_FIXED, mem_fd, GPIO_BASE);
+    gpio_map = (uint32_t *)mmap( (void *)gpio_mem, BLOCK_SIZE, PROT_READ|PROT_WRITE, MAP_SHARED|MAP_FIXED, mem_fd, GPIO_BASE);
 
     if ((uint32_t)gpio_map < 0)
         return SETUP_MMAP_FAIL;
@@ -173,5 +173,5 @@ void
 cleanup(void)
 {
     // fixme - set all gpios back to input
-    munmap((caddr_t)gpio_map, BLOCK_SIZE);
+    munmap((void *)gpio_map, BLOCK_SIZE);
 }
