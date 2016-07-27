@@ -1,3 +1,9 @@
+rpio (2.0.0-b2) unstable; urgency=low
+
+  * Enhance support for Raspberry Pi 3
+
+ -- Doom <doom.mail@gmail.com>  Thu, 28 Jul 2016 
+
 rpio (2.0.0-beta1) unstable; urgency=low
 
   * Support for Raspberry Pi 0, 2, 3 (thanks to Andy Baker and Reik Hua)

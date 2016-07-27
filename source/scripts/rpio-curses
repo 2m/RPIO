@@ -179,7 +179,7 @@ class Drawer(object):
 
             gpio_id, func, state = gpio
             screen.addstr(pos_y, POS_GPIOLIST_X, "GPIO %s: " % (gpio_id))
-            screen.addstr(pos_y, POS_GPIOLIST_X+9, "%s     " % (GPIO_FUNCTIONS[func]), curses.color_pair(3) if func == 4 else 0)
+            screen.addstr(pos_y, POS_GPIOLIST_X+9, "%s     " % (GPIO_FUNCTIONS[func] if func in GPIO_FUNCTIONS else '???'), curses.color_pair(3) if func == 4 else 0)
             screen.addstr(pos_y, POS_GPIOLIST_X+18, "%s    " % STATES[state], curses.color_pair(2) if state else 0)
             pos_y += 1
 
@@ -202,10 +202,10 @@ class Drawer(object):
 
         screen = self.screen
         screen.addstr(POS_GPIOINFO_Y, POS_GPIOINFO_X, "GPIO %-20s" % gpio)
-        seplen = 12 + len(GPIO_FUNCTIONS[function])
+        seplen = 12 + len(GPIO_FUNCTIONS[function] if function in GPIO_FUNCTIONS else '???')
         screen.addstr(POS_GPIOINFO_Y+1, POS_GPIOINFO_X, "%s" % ("-" * seplen))
         screen.addstr(POS_GPIOINFO_Y+2, POS_GPIOINFO_X, "- Function:")
-        screen.addstr(POS_GPIOINFO_Y+2, POS_GPIOINFO_X+12, "%-10s" % GPIO_FUNCTIONS[function], curses.color_pair(3) if function == 2 else 0)
+        screen.addstr(POS_GPIOINFO_Y+2, POS_GPIOINFO_X+12, "%-10s" % GPIO_FUNCTIONS[function] if function in GPIO_FUNCTIONS else '???', curses.color_pair(3) if function == 2 else 0)
         screen.addstr(POS_GPIOINFO_Y+3, POS_GPIOINFO_X, "- State:")
         screen.addstr(POS_GPIOINFO_Y+3, POS_GPIOINFO_X+12, "%-10s" % STATES[state], curses.color_pair(2) if state else 0)
 

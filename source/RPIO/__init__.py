@@ -116,7 +116,7 @@ import RPIO._GPIO as _GPIO
 from RPIO._RPIO import Interruptor
 
 
-VERSION = "2.0.0-beta1"
+VERSION = "2.0.0-b2"
 
 # Exposing constants from RPi.GPIO
 VERSION_GPIO = _GPIO.VERSION_GPIO
@@ -159,7 +159,9 @@ MODEL_DATA = {
     'd': ('B', '2.0', 512, 'Egoman'),
     'e': ('B', '2.0', 512, 'Sony'),
     'f': ('B', '2.0', 512, 'Qisda'),
-    '10': ('B+', '1.0', 512, 'Sony')
+    '10': ('B+', '1.0', 512, 'Sony'),
+    'a02082': ('B', '3.0', 1024, '?')
+
 }
 
 # List of valid bcm gpio ids for raspberry rev1, rev2 and rev3. Used for inspect-all.
@@ -183,7 +185,8 @@ _rpio = Interruptor()
 
 def sysinfo():
     """ Returns (model, revision, mb-ram, maker) for this raspberry """
-    return (RPI_REVISION_HEX,) + MODEL_DATA[RPI_REVISION_HEX.lstrip("0")]
+    infos=MODEL_DATA[RPI_REVISION_HEX.lstrip("0")] if RPI_REVISION_HEX.lstrip("0") in MODEL_DATA else ('?','?',-1,'?')
+    return (RPI_REVISION_HEX,) + infos 
 
 
 def version():

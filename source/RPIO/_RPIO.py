@@ -141,8 +141,9 @@ class Interruptor:
         if RPIO.gpio_function(int(gpio_id)) == RPIO.IN:
             RPIO.set_pullupdn(gpio_id, pull_up_down)
         else:
+            index=RPIO.gpio_function(int(gpio_id))
             debug("- changing gpio function from %s to INPUT" % \
-                    (GPIO_FUNCTIONS[RPIO.gpio_function(int(gpio_id))]))
+                    (GPIO_FUNCTIONS[index] if index in GPIO_FUNCTIONS else '???'))
             RPIO.setup(gpio_id, RPIO.IN, pull_up_down)
 
         # Prepare the callback (wrap in Thread if needed)
