@@ -48,7 +48,7 @@ copyright = u'2013, Chris Hager <chris@linuxuser.at>'
 # built documents.
 #
 # The short X.Y version.
-version = '2.0.0-2'
+version = '2.0.0-b2'
 # The full version, including alpha/beta/rc tags.
 release = version
 
